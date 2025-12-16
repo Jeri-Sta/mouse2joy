@@ -10,7 +10,7 @@ cp ./mouse2joy-v0.1.0-x86_64-unknown-linux-musl/mouse2joy .
 ```
 Now you should be able to run it from the same directory with:
 ```
-./mouse2joy
+sudo ./mouse2joy
 ```
 
 ## Configuration
