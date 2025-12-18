@@ -21,7 +21,7 @@ pub struct Config {
 impl Config {
   pub fn default() -> Self {
     Self {
-      sensitivity: 1,
+      sensitivity: 3,
       dead_zone: 0,
       flat: 0,
       gui: true,
