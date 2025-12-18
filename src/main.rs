@@ -1,5 +1,5 @@
-use evdev: :{
-    uinput:: VirtualDevice, uinput::VirtualDeviceBuilder, AbsInfo, AbsoluteAxisType, Device,
+use evdev::{
+    uinput::VirtualDevice, uinput::VirtualDeviceBuilder, AbsInfo, AbsoluteAxisType, Device,
     EventType, InputEvent, InputEventKind, Key, RelativeAxisType, UinputAbsSetup,
 };
 use std::fs;
@@ -35,7 +35,7 @@ fn main() -> Result<(), Mouse2JoyError> {
 
     // initialize logger
     Builder::new()
-        .filter_level(LevelFilter:: Trace)
+        .filter_level(LevelFilter::Trace)
         .init();
 
     let conf = load_config();
@@ -55,7 +55,7 @@ fn main() -> Result<(), Mouse2JoyError> {
 
     if mouse_devices.is_empty() {
         error!("{}", Mouse2JoyError::NoMouseError);
-        return Err(Mouse2JoyError:: NoMouseError);
+        return Err(Mouse2JoyError::NoMouseError);
     }
 
     // ask user which mouse to use
@@ -140,9 +140,9 @@ fn main() -> Result<(), Mouse2JoyError> {
 
 fn create_steering_wheel(abs_info: AbsInfo, name: &str) -> std::io::Result<VirtualDevice> {
     // Only use ABS_X for steering wheel rotation
-    let abs_x = UinputAbsSetup:: new(AbsoluteAxisType:: ABS_X, abs_info);
+    let abs_x = UinputAbsSetup::new(AbsoluteAxisType:: ABS_X, abs_info);
 
-    let mut keys = evdev:: AttributeSet::new();
+    let mut keys = evdev::AttributeSet::new();
     for button in KEYS {
         keys.insert(button)
     }
@@ -161,7 +161,7 @@ fn input_in_range(min: usize, max: usize) -> usize {
     let mut input = String::new();
 
     loop {
-        input. clear();
+        input.clear();
         std::io::stdin()
             .read_line(&mut input)
             .expect("Failed to read line");
@@ -182,7 +182,7 @@ fn input_in_range(min: usize, max: usize) -> usize {
 }
 
 fn load_config() -> Config {
-    if Config:: exists() {
+    if Config::exists() {
       match Config::load() {
         Ok(conf) => {
           info!("Using configuration file {}", Config::path());
